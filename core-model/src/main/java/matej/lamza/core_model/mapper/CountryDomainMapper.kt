@@ -7,9 +7,7 @@ object CountryDomainMapper : DomainMapper<List<Country>, List<CountryResponse>> 
     override fun asDomain(response: List<CountryResponse>): List<Country> {
         return response.map {
             return@map with(it) {
-                Country(
-                    name.name, capital, population, area, flags.first()
-                )
+                Country(name.name, population, area)
             }
         }
     }

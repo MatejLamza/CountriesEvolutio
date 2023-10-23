@@ -5,15 +5,13 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class CountryResponse(
-    @field:Json(name = "common") val name: NameResponse,
-    @field:Json(name = "capital") val capital: List<String>,
+    @field:Json(name = "name") val name: NameResponse,
     @field:Json(name = "population") val population: Int,
     @field:Json(name = "area") val area: Double,
-    @field:Json(name = "flags") val flags: List<String>,
 )
 
-
+@JsonClass(generateAdapter = true)
 data class NameResponse(
     @field:Json(name = "common") val name: String,
-    @field:Json(name = "offical") val officalName: String,
+    @field:Json(name = "official") val officalName: String,
 )

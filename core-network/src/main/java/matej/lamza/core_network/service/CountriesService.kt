@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface CountriesService {
 
-    @GET("/all")
+    @GET("all")
     suspend fun fetchCountriesList(): ApiResponse<List<CountryResponse>>
 }

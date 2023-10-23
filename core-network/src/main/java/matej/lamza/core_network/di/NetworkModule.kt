@@ -10,7 +10,7 @@ val networkModule = module {
     single {
         // TODO move out to config
         Retrofit.Builder()
-            .baseUrl("https://restcountries.com/v3.1")
+            .baseUrl("https://restcountries.com/v3.1/")
             .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
