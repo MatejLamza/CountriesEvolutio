@@ -22,6 +22,8 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 material = "1.10.0"
 
+whatif = "1.1.4"
+
 
 
 [plugins]
@@ -58,6 +60,7 @@ sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp" }
 
 bindables = { module = "com.github.skydoves:bindables", version.ref = "bindable" }
+whatIf = { module = "com.github.skydoves:whatif", version.ref = "whatif" }
 
 #Tests
 junit = { group = "junit", name = "junit", version.ref = "junit" }

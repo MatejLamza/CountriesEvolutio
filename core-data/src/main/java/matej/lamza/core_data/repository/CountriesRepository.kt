@@ -11,4 +11,7 @@ interface CountriesRepository {
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ): Flow<List<Country>>
+
+    @WorkerThread
+    fun fetchCountriesForQuery(name: String): Flow<List<Country>>
 }
