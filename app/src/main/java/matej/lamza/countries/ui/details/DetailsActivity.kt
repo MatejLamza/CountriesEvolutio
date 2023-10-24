@@ -8,6 +8,8 @@ import com.skydoves.bundler.intentOf
 import matej.lamza.core_model.Country
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ActivityDetailsBinding
+import matej.lamza.countries.utils.extensions.openMaps
+
 
 class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activity_details) {
 
@@ -15,6 +17,9 @@ class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.country = country
+        binding.filledButton.setOnClickListener {
+            openMaps("")
+        }
     }
 
     companion object {

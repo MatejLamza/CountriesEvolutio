@@ -8,7 +8,10 @@ data class CountryResponse(
     @field:Json(name = "name") val name: NameResponse,
     @field:Json(name = "population") val population: Int,
     @field:Json(name = "area") val area: Double,
-    @field:Json(name = "flags") val flags: FlagsResponse
+    @field:Json(name = "flags") val flags: FlagsResponse,
+    @field:Json(name = "capital") val capitals: List<String>,
+    @field:Json(name = "timezones") val timezones: List<String>,
+    @field:Json(name = "borders") val borders: List<String>
 )
 
 @JsonClass(generateAdapter = true)
