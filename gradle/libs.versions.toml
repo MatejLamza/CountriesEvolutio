@@ -13,6 +13,8 @@ ksp = "1.8.10-1.0.9"
 moshi = "1.15.0"
 
 retrofit = "2.9.0"
+recyclerView = "1.3.2"
+
 
 sandwich = "1.3.9"
 core-ktx = "1.9.0"
@@ -21,6 +23,8 @@ junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 material = "1.10.0"
+
+whatif = "1.1.4"
 
 
 
@@ -37,6 +41,8 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
+
 
 #Android X
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragment" }
@@ -58,6 +64,7 @@ sandwich = { module = "com.github.skydoves:sandwich", version.ref = "sandwich" }
 ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp" }
 
 bindables = { module = "com.github.skydoves:bindables", version.ref = "bindable" }
+whatIf = { module = "com.github.skydoves:whatif", version.ref = "whatif" }
 
 #Tests
 junit = { group = "junit", name = "junit", version.ref = "junit" }

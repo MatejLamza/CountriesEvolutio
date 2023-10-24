@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.recyclerview)
 
     //region DI
     implementation(libs.koin)
@@ -52,5 +53,6 @@ dependencies {
 
     //Others
     implementation(libs.bindables)
+    implementation(libs.whatIf)
 
 }

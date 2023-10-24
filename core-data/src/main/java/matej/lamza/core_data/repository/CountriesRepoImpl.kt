@@ -1,5 +1,6 @@
 package matej.lamza.core_data.repository
 
+import android.util.Log
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
@@ -13,6 +14,8 @@ import matej.lamza.core_model.Country
 import matej.lamza.core_model.mapper.asDomain
 import matej.lamza.core_network.service.CountriesService
 
+private const val TAG = "RepoImpl"
+
 class CountriesRepoImpl(private val countriesService: CountriesService) : CountriesRepository {
 
     override fun fetchCountriesList(
@@ -25,5 +28,13 @@ class CountriesRepoImpl(private val countriesService: CountriesService) : Countr
         .onStart { onStart() }
         .onCompletion { onComplete() }
         .flowOn(Dispatchers.IO)
+
+    override fun fetchCountriesForQuery(name: String): Flow<List<Country>> =
+        flow {
+            countriesService.fetchCountriesForQuery(name)
+                .suspendOnSuccess { emit(this.data.asDomain()) }
+                .onFailure { Log.e(TAG, "fetchCountriesForQuery: $name Error!") }
+        }
+            .flowOn(Dispatchers.IO)
 }
 

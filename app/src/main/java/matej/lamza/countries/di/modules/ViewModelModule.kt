@@ -1,6 +1,6 @@
 package matej.lamza.countries.di.modules
 
-import matej.lamza.countries.ui.CountryViewModel
+import matej.lamza.countries.ui.search.CountryViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
