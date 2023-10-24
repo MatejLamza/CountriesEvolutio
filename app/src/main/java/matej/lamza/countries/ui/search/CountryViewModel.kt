@@ -12,18 +12,19 @@ import kotlinx.coroutines.flow.flatMapConcat
 import matej.lamza.core_data.repository.CountriesRepository
 import matej.lamza.core_model.Country
 
+private const val INPUT_WAIT_DURATION = 500L
+
 class CountryViewModel(private val countriesRepository: CountriesRepository) : BindingViewModel() {
     private val query = MutableStateFlow<String>("")
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
-    val countriesList = query.flatMapConcat {
-        countriesRepository.fetchCountriesForQuery(it)
-    }.debounce(300)
+    private val countriesList =
+        query.flatMapConcat { countriesRepository.fetchCountriesForQuery(it) }.debounce(INPUT_WAIT_DURATION)
 
     @get:Bindable
     val countryList: List<Country> by countriesList.asBindingProperty(viewModelScope, emptyList())
 
-    fun setQuery(name: String) {
+    fun submitSearchQuery(name: String) {
         query.value = name
     }
 }

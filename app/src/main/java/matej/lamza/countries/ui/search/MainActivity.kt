@@ -23,7 +23,7 @@ class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_se
         with(binding) {
             //todo implement this through bindables
             countrySearch.editText.setOnEditorActionListener { textView, _, _ ->
-                countryVM.setQuery(textView.text.toString())
+                countryVM.submitSearchQuery(textView.text.toString())
                 return@setOnEditorActionListener false
             }
         }

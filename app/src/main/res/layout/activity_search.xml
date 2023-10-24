@@ -1,7 +1,6 @@
 <layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="matej.lamza.countries.ui.search.CountryViewModel" />

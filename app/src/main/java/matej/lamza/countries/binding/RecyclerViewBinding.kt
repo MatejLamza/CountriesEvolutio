@@ -7,19 +7,17 @@ import com.skydoves.whatif.whatIfNotNullAs
 
 object RecyclerViewBinding {
 
-  @JvmStatic
-  @BindingAdapter("adapter")
-  fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-    view.adapter = adapter.apply {
-      stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+    /**
+     * [submitList] is property that we will be using inside our layout item XML to assign list of items that will be
+     * displayed in recycler view.
+     * This will make sure to trigger diff utils that our recycler view adapter is using to refresh contents of the
+     * [RecyclerView]
+     */
+    @JvmStatic
+    @BindingAdapter("submitList")
+    fun bindSubmitList(view: RecyclerView, itemList: List<Any>?) {
+        view.adapter.whatIfNotNullAs<BindingListAdapter<Any, *>> { adapter ->
+            adapter.submitList(itemList)
+        }
     }
-  }
-
-  @JvmStatic
-  @BindingAdapter("submitList")
-  fun bindSubmitList(view: RecyclerView, itemList: List<Any>?) {
-    view.adapter.whatIfNotNullAs<BindingListAdapter<Any, *>> { adapter ->
-      adapter.submitList(itemList)
-    }
-  }
 }
