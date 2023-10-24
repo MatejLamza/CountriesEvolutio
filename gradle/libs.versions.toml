@@ -5,6 +5,7 @@ androidxLifecycle = "2.6.2"
 androidxFragment = "1.6.1"
 
 bindable = "1.1.0"
+bundler = "1.0.4"
 
 koin = "3.4.0"
 kotlin = "1.8.0"
@@ -33,7 +34,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 
@@ -65,6 +66,7 @@ ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp
 
 bindables = { module = "com.github.skydoves:bindables", version.ref = "bindable" }
 whatIf = { module = "com.github.skydoves:whatif", version.ref = "whatif" }
+bundler = { module = "com.github.skydoves:bundler", version.ref = "bundler" }
 
 #Tests
 junit = { group = "junit", name = "junit", version.ref = "junit" }

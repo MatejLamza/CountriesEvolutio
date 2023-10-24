@@ -2,12 +2,14 @@ package matej.lamza.countries.ui.search
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.DiffResult.NO_POSITION
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import matej.lamza.core_model.Country
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ItemCountryBinding
+import matej.lamza.countries.ui.details.DetailsActivity
 
 class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHolder>(diffUtil) {
 
@@ -25,7 +27,9 @@ class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHol
 
         init {
             binding.root.setOnClickListener {
-                //todo: open details screen
+                val position = bindingAdapterPosition.takeIf { it != NO_POSITION } ?: return@setOnClickListener
+
+                DetailsActivity.startActivity(binding.parent, getItem(position))
             }
         }
 

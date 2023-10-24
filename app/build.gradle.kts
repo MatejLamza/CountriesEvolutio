@@ -54,5 +54,6 @@ dependencies {
     //Others
     implementation(libs.bindables)
     implementation(libs.whatIf)
+    implementation(libs.bundler)
 
 }
