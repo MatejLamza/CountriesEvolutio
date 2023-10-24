@@ -1,24 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="adapter"
-            type="matej.lamza.countries.ui.search.CountryAdapter" />
 
         <variable
             name="vm"
             type="matej.lamza.countries.ui.search.CountryViewModel" />
 
+        <variable
+            name="adapter"
+            type="matej.lamza.countries.ui.search.CountryAdapter" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/searchbar_scrolling_view_behavior">
+
+            <!-- Screen content goes here. -->
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
@@ -28,40 +32,28 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Search countries" />
+                android:hint="Hint..." />
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.search.SearchView
             android:id="@+id/country_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="countries"
+            android:hint="Hint...."
             app:layout_anchor="@id/search_bar">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="HELLO"
-                android:textSize="24sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                submitList="@{vm.countryList}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adapter="@{adapter}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_country" />
 
         </com.google.android.material.search.SearchView>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:clipToPadding="false"
-            android:fadeScrollbars="false"
-            android:padding="6dp"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbars="vertical"
-            app:adapter="@{adapter}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_anchor="@id/search_bar"
-            app:submitList="@{vm.countryList}"
-            tools:listitem="@layout/item_country" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
+

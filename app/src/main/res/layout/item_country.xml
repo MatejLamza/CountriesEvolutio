@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="country"
             type="matej.lamza.core_model.Country" />
     </data>
+
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -32,11 +32,11 @@
                 android:id="@+id/country_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{country.name}"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:text="@{country.name}"
                 tools:text="Croatia" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,7 @@
 package matej.lamza.countries.ui.search
 
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import com.skydoves.bindables.BindingActivity
-import kotlinx.coroutines.launch
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ActivitySearchBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -17,27 +14,18 @@ class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_se
         super.onCreate(savedInstanceState)
         binding {
             vm = countryVM
+            adapter = CountryAdapter()
         }
-
         setupUI()
     }
 
     private fun setupUI() {
         with(binding) {
+            //todo implement this through bindables
             countrySearch.editText.setOnEditorActionListener { textView, _, _ ->
                 countryVM.setQuery(textView.text.toString())
                 return@setOnEditorActionListener false
             }
-
-            lifecycleScope.launch {
-                countryVM.countriesList.collect {
-                    it.forEach {
-                        Log.d("bbb", "$it")
-                    }
-                }
-            }
-
-            recyclerView.adapter = CountryAdapter()
         }
     }
 }

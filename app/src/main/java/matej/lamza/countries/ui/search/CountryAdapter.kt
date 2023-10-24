@@ -11,12 +11,13 @@ import matej.lamza.countries.databinding.ItemCountryBinding
 
 class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHolder>(diffUtil) {
 
-
-    override fun onBindViewHolder(holder: CountryViewHolder, position: Int) =
+    override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         holder.bindCountry(getItem(position))
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder =
-        parent.binding<ItemCountryBinding>(R.layout.item_country).let(::CountryViewHolder)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
+        return parent.binding<ItemCountryBinding>(R.layout.item_country).let(::CountryViewHolder)
+    }
 
     inner class CountryViewHolder constructor(
         private val binding: ItemCountryBinding
@@ -24,6 +25,7 @@ class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHol
 
         init {
             binding.root.setOnClickListener {
+                //todo: open details screen
             }
         }
 
@@ -35,12 +37,9 @@ class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHol
 
     companion object {
         private val diffUtil = object : DiffUtil.ItemCallback<Country>() {
+            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem.name == newItem.name
 
-            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean =
-                oldItem.name == newItem.name
-
-            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean =
-                oldItem == newItem
+            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem == newItem
         }
     }
 }
