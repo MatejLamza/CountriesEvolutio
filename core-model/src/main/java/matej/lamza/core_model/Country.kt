@@ -11,8 +11,10 @@ data class Country(
     val area: Double,
     val image: String,
     val capitals: List<String>,
-    val timezones: List<String>
+    val timezones: List<String>,
+    val borders: List<String>?
 ) : Parcelable {
+    val temp = listOf<String>("BIH, SLO, HUN, SRB, IT")
     val capital: String = capitals.toString()
     val areaStr: String = area.toString()
     val pop: String = population.toString()

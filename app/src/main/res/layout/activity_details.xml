@@ -4,6 +4,10 @@
     <data>
 
         <variable
+            name="adapter"
+            type="matej.lamza.countries.ui.details.CountryBordersAdapter" />
+
+        <variable
             name="country"
             type="matej.lamza.core_model.Country" />
     </data>
@@ -36,7 +40,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="12dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/country_name"
@@ -154,40 +158,44 @@
 
                 </LinearLayout>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/borders"
+                    shouldBeGone="@{country.borders == null}"
+                    submitList="@{country.temp}"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="12dp"
+                    android:adapter="@{adapter}"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/info_container"
+                    tools:listitem="@layout/item_country_border" />
+
                 <matej.lamza.countries.common.views.TextViewWithLabel
                     android:id="@+id/label_languages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
+                    app:label="Languages"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/info_container" />
+                    app:layout_constraintTop_toBottomOf="@id/borders"
+                    app:value="Croatian" />
 
                 <matej.lamza.countries.common.views.TextViewWithLabel
                     android:id="@+id/timezones"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     app:label="Timezones"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_languages"
                     app:value="@{country.timezone}" />
 
-                <matej.lamza.countries.common.views.TextViewWithLabel
-                    android:id="@+id/borders"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:label="Borders"
-                    app:layout_constraintEnd_toStartOf="@id/btn_navigate"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/timezones"
-                    app:value="SLO, SRB, HUN" />
 
                 <Button
                     android:id="@+id/btn_navigate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:text="Open in maps"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
