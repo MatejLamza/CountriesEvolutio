@@ -14,3 +14,9 @@ object CountryDomainMapper : DomainMapper<List<Country>, List<CountryResponse>> 
 }
 
 fun List<CountryResponse>.asDomain(): List<Country> = CountryDomainMapper.asDomain(this)
+
+fun CountryResponse.asDomain(): Country {
+    return Country(
+        name.name, population, area, image = flags.flagImage, capitals = capitals, timezones
+    )
+}

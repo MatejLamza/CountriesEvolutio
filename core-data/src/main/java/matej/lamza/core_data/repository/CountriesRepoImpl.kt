@@ -38,5 +38,13 @@ class CountriesRepoImpl(private val countriesService: CountriesService) : Countr
                 }
         }
             .flowOn(Dispatchers.IO)
+
+    override fun fetchCountryByCode(code: String): Flow<Country> =
+        flow {
+            countriesService.fetchCountryByCode(code)
+                .suspendOnSuccess { emit(data.asDomain().first()) }
+                .onFailure { Log.e(TAG, "fetchCountryByCode: $code Error! \n ${message()}") }
+        }.flowOn(Dispatchers.IO)
+
 }
 

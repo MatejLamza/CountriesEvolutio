@@ -14,4 +14,7 @@ interface CountriesRepository {
 
     @WorkerThread
     fun fetchCountriesForQuery(name: String): Flow<List<Country>>
+
+    @WorkerThread
+    fun fetchCountryByCode(code: String): Flow<Country>
 }
