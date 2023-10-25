@@ -33,7 +33,9 @@ class CountriesRepoImpl(private val countriesService: CountriesService) : Countr
         flow {
             countriesService.fetchCountriesForQuery(name)
                 .suspendOnSuccess { emit(this.data.asDomain()) }
-                .onFailure { Log.e(TAG, "fetchCountriesForQuery: $name Error!") }
+                .onFailure {
+                    Log.e(TAG, "fetchCountriesForQuery: $name Error!\n ${this.message()}")
+                }
         }
             .flowOn(Dispatchers.IO)
 }

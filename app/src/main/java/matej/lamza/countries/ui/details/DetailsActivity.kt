@@ -17,9 +17,7 @@ class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.country = country
-        binding.filledButton.setOnClickListener {
-            openMaps("")
-        }
+        binding.btnNavigate.setOnClickListener { openMaps("") }
     }
 
     companion object {

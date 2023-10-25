@@ -49,15 +49,16 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Indonesia" />
 
-                <ImageView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/flag"
+                    setImage="@{country.image}"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/country_flag"
-                    android:src="@drawable/flag"
                     app:layout_constraintBottom_toBottomOf="@id/country_name"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/flag" />
 
                 <LinearLayout
                     android:id="@+id/info_container"
@@ -171,6 +172,7 @@
                     app:value="@{country.timezone}" />
 
                 <Button
+                    android:id="@+id/btn_navigate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"

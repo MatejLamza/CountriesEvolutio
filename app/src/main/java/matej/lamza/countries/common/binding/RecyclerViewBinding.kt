@@ -1,9 +1,12 @@
-package matej.lamza.countries.binding
+package matej.lamza.countries.common.binding
 
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.whatif.whatIfNotNullAs
+import matej.lamza.countries.R
 
 object RecyclerViewBinding {
 
@@ -19,5 +22,15 @@ object RecyclerViewBinding {
         view.adapter.whatIfNotNullAs<BindingListAdapter<Any, *>> { adapter ->
             adapter.submitList(itemList)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setImage")
+    fun bindImage(view: AppCompatImageView, url: String) {
+        val context = view.context
+        Glide.with(context)
+            .load(url)
+            .placeholder(R.drawable.flag)
+            .into(view)
     }
 }

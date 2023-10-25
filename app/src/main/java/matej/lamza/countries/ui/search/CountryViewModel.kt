@@ -9,6 +9,7 @@ import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.flatMapConcat
+import kotlinx.coroutines.flow.flowOf
 import matej.lamza.core_data.repository.CountriesRepository
 import matej.lamza.core_model.Country
 
@@ -19,7 +20,11 @@ class CountryViewModel(private val countriesRepository: CountriesRepository) : B
 
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     private val countriesList =
-        query.flatMapConcat { countriesRepository.fetchCountriesForQuery(it) }.debounce(INPUT_WAIT_DURATION)
+        query.flatMapConcat { query ->
+            if (query.isNotBlank())
+                countriesRepository.fetchCountriesForQuery(query)
+            else flowOf(emptyList())
+        }.debounce(INPUT_WAIT_DURATION)
 
     @get:Bindable
     val countryList: List<Country> by countriesList.asBindingProperty(viewModelScope, emptyList())

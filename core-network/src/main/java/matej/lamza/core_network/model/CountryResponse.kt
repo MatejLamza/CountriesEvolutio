@@ -11,7 +11,7 @@ data class CountryResponse(
     @field:Json(name = "flags") val flags: FlagsResponse,
     @field:Json(name = "capital") val capitals: List<String>,
     @field:Json(name = "timezones") val timezones: List<String>,
-    @field:Json(name = "borders") val borders: List<String>
+    @field:Json(name = "borders") val borders: List<String> = emptyList()
 )
 
 @JsonClass(generateAdapter = true)
@@ -22,5 +22,5 @@ data class NameResponse(
 
 @JsonClass(generateAdapter = true)
 data class FlagsResponse(
-    @field:Json(name = "svg") val flagImage: String
+    @field:Json(name = "png") val flagImage: String
 )

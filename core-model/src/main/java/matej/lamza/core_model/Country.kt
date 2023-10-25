@@ -9,7 +9,7 @@ data class Country(
     val name: String,
     val population: Int,
     val area: Double,
-    val image: String?,
+    val image: String,
     val capitals: List<String>,
     val timezones: List<String>
 ) : Parcelable {
