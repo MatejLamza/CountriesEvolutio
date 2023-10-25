@@ -12,4 +12,7 @@ interface CountriesService {
 
     @GET("name/{name}")
     suspend fun fetchCountriesForQuery(@Path("name") name: String): ApiResponse<List<CountryResponse>>
+
+    @GET("alpha/{code}")
+    suspend fun fetchCountryByCode(@Path("code") code: String): ApiResponse<List<CountryResponse>>
 }
