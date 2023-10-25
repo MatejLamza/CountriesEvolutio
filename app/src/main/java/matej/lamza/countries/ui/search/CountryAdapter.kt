@@ -20,14 +20,13 @@ class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHol
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         return parent.binding<ItemCountryBinding>(R.layout.item_country).let(::CountryViewHolder)
     }
-    inner class CountryViewHolder constructor(
-        private val binding: ItemCountryBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+
+    inner class CountryViewHolder constructor(private val binding: ItemCountryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
                 val position = bindingAdapterPosition.takeIf { it != NO_POSITION } ?: return@setOnClickListener
-
                 DetailsActivity.startActivity(binding.parent, getItem(position))
             }
         }

@@ -8,8 +8,8 @@
             type="matej.lamza.countries.ui.details.CountryBordersAdapter" />
 
         <variable
-            name="country"
-            type="matej.lamza.core_model.Country" />
+            name="vm"
+            type="matej.lamza.countries.ui.details.DetailsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -44,9 +44,9 @@
 
                 <TextView
                     android:id="@+id/country_name"
-                    text="@{country.name}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:text="@{vm.countryInfo.name}"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/flag"
@@ -56,7 +56,7 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/flag"
-                    setImage="@{country.image}"
+                    setImage="@{vm.countryInfo.image}"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:contentDescription="@string/country_flag"
@@ -92,7 +92,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="@{country.pop}"
+                            android:text="@{vm.countryInfo.pop}"
                             tools:text="897,300" />
 
                     </LinearLayout>
@@ -121,7 +121,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="@{country.areaStr}"
+                            android:text="@{vm.countryInfo.areaStr}"
                             tools:text="897,300" />
 
                     </LinearLayout>
@@ -150,18 +150,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="@{country.capital}"
+                            android:text="@{vm.countryInfo.capital}"
                             tools:text="Denpasar" />
 
                     </LinearLayout>
-
 
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/borders"
-                    shouldBeGone="@{country.borders == null}"
-                    submitList="@{country.temp}"
+                    shouldBeGone="@{vm.countryInfo.borders == null}"
+                    submitList="@{vm.countryInfo.borders}"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="12dp"
@@ -189,7 +188,7 @@
                     app:label="Timezones"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_languages"
-                    app:value="@{country.timezone}" />
+                    app:value="@{vm.countryInfo.timezone}" />
 
 
                 <Button

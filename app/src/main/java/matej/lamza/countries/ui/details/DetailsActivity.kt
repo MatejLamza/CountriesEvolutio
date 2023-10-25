@@ -10,21 +10,23 @@ import matej.lamza.core_model.Country
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ActivityDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 
 class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activity_details) {
 
     private val country: Country by bundleNonNull(EXTRA_COUNTRY)
-    private val detailsVM by viewModel<DetailsViewModel>()
+    private val detailsVM by viewModel<DetailsViewModel> { parametersOf(country) }
     private val adapter by lazy { CountryBordersAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding {
-            country = this@DetailsActivity.country
             adapter = this@DetailsActivity.adapter
+            vm = detailsVM
         }
-        country.borders?.let { adapter.addBorderList(it) }
+
+        adapter.onCountryBorderClicked = { detailsVM.fetchNewCountry(it) }
     }
 
     companion object {

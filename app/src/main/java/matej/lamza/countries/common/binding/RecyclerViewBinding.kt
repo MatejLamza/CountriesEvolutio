@@ -26,7 +26,7 @@ object RecyclerViewBinding {
 
     @JvmStatic
     @BindingAdapter("setImage")
-    fun bindImage(view: AppCompatImageView, url: String) {
+    fun bindImage(view: AppCompatImageView, url: String?) {
         val context = view.context
         Glide.with(context)
             .load(url)
