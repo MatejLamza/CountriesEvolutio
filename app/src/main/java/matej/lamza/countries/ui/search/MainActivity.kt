@@ -21,10 +21,17 @@ class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_se
 
     private fun setupUI() {
         with(binding) {
-            //todo implement this through bindables
             countrySearch.editText.setOnEditorActionListener { textView, _, _ ->
                 countryVM.submitSearchQuery(textView.text.toString())
                 return@setOnEditorActionListener false
+            }
+
+            sort.setOnClickListener {
+                val bottomSheetDialog = SortBottomDialog(this@MainActivity)
+                bottomSheetDialog.show()
+                bottomSheetDialog.onSortClicked = { sortOptions ->
+                    binding.adapter?.sortCountries(sortOptions)
+                }
             }
         }
     }
