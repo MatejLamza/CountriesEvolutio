@@ -16,7 +16,7 @@ import matej.lamza.core_model.Country
 import matej.lamza.countries.common.state.State
 
 class CountryViewModel(private val countriesRepository: CountriesRepository) : BindingViewModel() {
-    private val query = MutableStateFlow<String>("")
+    private val query = MutableStateFlow("")
 
     private val _uiState = MutableLiveData<State>()
     val uiState: LiveData<State> = _uiState

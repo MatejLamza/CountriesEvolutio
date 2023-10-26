@@ -57,5 +57,5 @@ dependencies {
     implementation(libs.bundler)
     implementation(libs.glide)
     implementation(libs.shimmer)
-
+    implementation(libs.androidx.junit.ktx)
 }

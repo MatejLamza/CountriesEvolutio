@@ -14,6 +14,13 @@ import matej.lamza.countries.utils.CountrySortOptions
 
 class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHolder>(diffUtil) {
 
+    companion object {
+        private val diffUtil = object : DiffUtil.ItemCallback<Country>() {
+            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem.name == newItem.name
+            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem == newItem
+        }
+    }
+
     private val originalList by lazy { currentList }
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
@@ -49,13 +56,6 @@ class CountryAdapter : BindingListAdapter<Country, CountryAdapter.CountryViewHol
         fun bindCountry(country: Country) {
             binding.country = country
             binding.executePendingBindings()
-        }
-    }
-
-    companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<Country>() {
-            override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem.name == newItem.name
-            override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean = oldItem == newItem
         }
     }
 }

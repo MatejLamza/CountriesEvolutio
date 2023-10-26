@@ -17,6 +17,17 @@ import org.koin.core.parameter.parametersOf
 
 class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activity_details) {
 
+    companion object {
+        internal const val EXTRA_COUNTRY = "EXTRA_COUNTRY"
+        fun startActivity(constraintLayout: ConstraintLayout, country: Country) {
+            constraintLayout.context.intentOf<DetailsActivity> {
+                putExtra(EXTRA_COUNTRY to country)
+                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(constraintLayout.context)
+            }
+        }
+    }
+
     private val country: Country by bundleNonNull(EXTRA_COUNTRY)
     private val detailsVM by viewModel<DetailsViewModel> { parametersOf(country) }
     private val adapter by lazy { CountryBordersAdapter() }
@@ -41,17 +52,6 @@ class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activit
     private fun setupObservers() {
         detailsVM.uiState.observe(this) {
             it.handleUIState(binding.root)
-        }
-    }
-
-    companion object {
-        internal const val EXTRA_COUNTRY = "EXTRA_COUNTRY"
-        fun startActivity(constraintLayout: ConstraintLayout, country: Country) {
-            constraintLayout.context.intentOf<DetailsActivity> {
-                putExtra(EXTRA_COUNTRY to country)
-                setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(constraintLayout.context)
-            }
         }
     }
 }

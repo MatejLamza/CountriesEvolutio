@@ -9,12 +9,11 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
-import org.koin.core.module.Module
 
 class CountriesDI(private val application: Application) {
 
     private lateinit var koinApplication: KoinApplication
-    private val modules = listOf<Module>(
+    private val modules = listOf(
         dataModule,
         networkModule,
         viewModelModule

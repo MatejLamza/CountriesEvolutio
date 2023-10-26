@@ -10,6 +10,14 @@ import matej.lamza.countries.databinding.ItemCountryBorderBinding
 
 class CountryBordersAdapter : BindingListAdapter<String, CountryBordersAdapter.CountryBorderViewHolder>(diffUtil) {
 
+    companion object {
+        private val diffUtil = object : DiffUtil.ItemCallback<String>() {
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
+
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
+        }
+    }
+
     var onCountryBorderClicked: ((countryCode: String) -> Unit)? = null
 
     override fun onBindViewHolder(holder: CountryBorderViewHolder, position: Int) {
@@ -35,14 +43,4 @@ class CountryBordersAdapter : BindingListAdapter<String, CountryBordersAdapter.C
             binding.executePendingBindings()
         }
     }
-
-    companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
-
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean = oldItem == newItem
-        }
-
-    }
-
 }
