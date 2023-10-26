@@ -1,5 +1,6 @@
 package matej.lamza.countries.common.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import androidx.core.content.withStyledAttributes
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.SliceTextWithLabelBinding
 
+@SuppressLint("SetTextI18n")
 class TextViewWithLabel @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -16,7 +18,7 @@ class TextViewWithLabel @JvmOverloads constructor(
 
     private val binding = SliceTextWithLabelBinding.inflate(LayoutInflater.from(context), this, true)
 
-    var label: String? = null
+    private var label: String? = null
         set(value) {
             field = value
             binding.label.text = value
@@ -31,7 +33,7 @@ class TextViewWithLabel @JvmOverloads constructor(
     init {
         if (isInEditMode) {
             binding.label.text = "Languages"
-            binding.value.text = "Slovenian, Croatian, Serbian, German, Italian, Dutch, Chinese"
+            binding.value.text = "Slovenian,"
         } else {
             context.withStyledAttributes(attrs, R.styleable.TextViewWithLabel) {
                 label = getString(R.styleable.TextViewWithLabel_label)

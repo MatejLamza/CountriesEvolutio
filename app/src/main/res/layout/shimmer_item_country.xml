@@ -3,14 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="country"
-            type="matej.lamza.core_model.Country" />
-    </data>
-
-
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,20 +17,20 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/country_flag"
-                setImage="@{country.image}"
                 android:layout_width="@dimen/icon_large"
                 android:layout_height="@dimen/icon_large"
                 android:layout_marginTop="@dimen/margin_default"
+                android:background="@color/grey"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/flag" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/country_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{country.name}"
+                android:background="@color/grey"
+                android:textColor="@color/grey"
                 android:textSize="@dimen/heading_two"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,63 +39,43 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_capital"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:text="@string/label_capital"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/country_flag"
-                app:layout_constraintTop_toTopOf="@id/country_flag" />
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_small"
-                android:text="@{country.capital}"
+                android:background="@color/grey"
+                android:text="Capital:"
+                android:textColor="@color/grey"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/label_capital"
-                app:layout_constraintTop_toTopOf="@id/label_capital"
-                tools:text="Denpasar" />
+                app:layout_constraintStart_toEndOf="@id/country_flag"
+                app:layout_constraintTop_toTopOf="@id/country_flag" />
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_population"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/label_population"
+                android:layout_marginTop="@dimen/margin_default"
+                android:background="@color/grey"
+                android:text="Population: "
+                android:textColor="@color/grey"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/label_capital"
                 app:layout_constraintTop_toBottomOf="@id/label_capital" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:text="@{country.pop}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/label_population"
-                app:layout_constraintTop_toTopOf="@id/label_population"
-                tools:text="7123129" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_area"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_default"
-                android:text="@string/label_area"
+                android:background="@color/grey"
+                android:text="Area:"
+                android:textColor="@color/grey"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/label_population"
                 app:layout_constraintTop_toBottomOf="@id/label_population" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_small"
-                android:text="@{country.areaStr}"
-                app:layout_constraintStart_toEndOf="@id/label_area"
-                app:layout_constraintTop_toTopOf="@id/label_area"
-                tools:text="6123123" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

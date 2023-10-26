@@ -27,6 +27,9 @@ dependencies {
 
     // json parsing
     implementation(libs.moshi)
+    implementation(libs.androidx.junit.ktx)
+    testImplementation("junit:junit:4.12")
+    testImplementation("junit:junit:4.12")
     ksp(libs.moshi.codegen)
 
     // di

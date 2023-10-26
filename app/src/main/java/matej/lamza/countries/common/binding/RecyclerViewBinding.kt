@@ -11,7 +11,7 @@ import matej.lamza.countries.R
 object RecyclerViewBinding {
 
     /**
-     * [submitList] is property that we will be using inside our layout item XML to assign list of items that will be
+     * submitList is property that we will be using inside our layout item XML to assign list of items that will be
      * displayed in recycler view.
      * This will make sure to trigger diff utils that our recycler view adapter is using to refresh contents of the
      * [RecyclerView]
