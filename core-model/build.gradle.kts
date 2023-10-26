@@ -22,4 +22,6 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":core-network")))
+    implementation(libs.androidx.junit.ktx)
+    testImplementation("junit:junit:4.12")
 }
