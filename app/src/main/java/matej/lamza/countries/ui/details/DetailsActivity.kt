@@ -9,6 +9,7 @@ import com.skydoves.bundler.intentOf
 import matej.lamza.core_model.Country
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ActivityDetailsBinding
+import matej.lamza.countries.utils.extensions.openMaps
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -25,8 +26,14 @@ class DetailsActivity : BindingActivity<ActivityDetailsBinding>(R.layout.activit
             adapter = this@DetailsActivity.adapter
             vm = detailsVM
         }
+        setupListeners()
+    }
 
+    private fun setupListeners() {
         adapter.onCountryBorderClicked = { detailsVM.fetchNewCountry(it) }
+        binding.btnNavigate.setOnClickListener {
+            detailsVM.countryInfo?.maps?.let { openMaps(it.googleMapLink) }
+        }
     }
 
     companion object {

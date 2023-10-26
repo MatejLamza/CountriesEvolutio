@@ -12,7 +12,8 @@ data class Country(
     val image: String,
     val capitals: List<String>?,
     val timezones: List<String>,
-    val borders: List<String>?
+    val borders: List<String>?,
+    val maps: CountryMapLinks
 ) : Parcelable {
     val capital: String = capitals.toString()
     val areaStr: String = area.toString()

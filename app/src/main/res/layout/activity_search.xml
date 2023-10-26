@@ -80,14 +80,13 @@
                 android:id="@+id/search_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Hint..." />
+                android:hint="@string/hint_country_search" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.search.SearchView
             android:id="@+id/country_search"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Hint...."
             app:layout_anchor="@id/search_bar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -99,7 +98,7 @@
                     shouldBeGone="@{vm.countryList == null}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sort"
+                    android:text="@string/sort"
                     app:icon="@drawable/sort"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

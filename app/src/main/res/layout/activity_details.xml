@@ -31,7 +31,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="320dp"
+            android:layout_height="@dimen/info_card_height"
             android:backgroundTint="@color/offwhite"
             android:translationZ="90dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -40,14 +40,14 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="8dp">
+                android:padding="@dimen/margin_medium">
 
                 <TextView
                     android:id="@+id/country_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@{vm.countryInfo.name}"
-                    android:textSize="24sp"
+                    android:textSize="@dimen/heading_two"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@id/flag"
                     app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/flag"
                     setImage="@{vm.countryInfo.image}"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/icon_medium"
+                    android:layout_height="@dimen/icon_medium"
                     android:contentDescription="@string/country_flag"
                     app:layout_constraintBottom_toBottomOf="@id/country_name"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +69,7 @@
                     android:id="@+id/info_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_default"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/country_name">
@@ -86,7 +86,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:alpha="0.7"
-                            android:text="Population" />
+                            android:text="@string/label_population" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -115,7 +115,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:alpha="0.7"
-                            android:text="Area" />
+                            android:text="@string/label_area" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -144,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:alpha="0.7"
-                            android:text="Capital" />
+                            android:text="@string/label_capital" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -163,7 +163,7 @@
                     submitList="@{vm.countryInfo.borders}"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/margin_medium"
                     android:adapter="@{adapter}"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -174,7 +174,7 @@
                     android:id="@+id/label_languages"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_default"
                     app:label="Languages"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/borders"
@@ -184,7 +184,7 @@
                     android:id="@+id/timezones"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_default"
                     app:label="Timezones"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/label_languages"
@@ -195,7 +195,7 @@
                     android:id="@+id/btn_navigate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Open in maps"
+                    android:text="@string/action_open_in_maps"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/timezones" />
