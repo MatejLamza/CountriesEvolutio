@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flowOf
@@ -22,9 +21,15 @@ class CountryViewModel(private val countriesRepository: CountriesRepository) : B
     private val _uiState = MutableLiveData<State>()
     val uiState: LiveData<State> = _uiState
 
-    @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
+    @OptIn(ExperimentalCoroutinesApi::class)
     private val countriesList = query.flatMapConcat { query ->
-        if (query.isNotBlank()) countriesRepository.fetchCountriesForQuery(query)
+        if (query.isNotBlank())
+            countriesRepository.fetchCountriesForQuery(
+                query,
+                { viewModelScope.launch { _uiState.value = State.Loading } },
+                { viewModelScope.launch { _uiState.value = State.Done } },
+                { viewModelScope.launch { _uiState.value = State.Error() } },
+            )
         else flowOf(emptyList())
     }
 

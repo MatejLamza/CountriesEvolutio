@@ -2,6 +2,7 @@ package matej.lamza.core_data.repository
 
 import android.util.Log
 import com.skydoves.sandwich.message
+import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
 import kotlinx.coroutines.Dispatchers
@@ -23,29 +24,41 @@ class CountriesRepoImpl(private val countriesService: CountriesService) : Countr
     ): Flow<List<Country>> = flow {
         countriesService.fetchCountriesList()
             .suspendOnSuccess { emit(this.data.asDomain()) }
-            .onFailure {
-                onError(this.message())
-            }
+            .onFailure { onError(this.message()) }
+            .onException { Log.d(TAG, "fetchCountriesList: ") }
     }
         .onStart { onStart() }
         .onCompletion { onComplete() }
         .flowOn(Dispatchers.IO)
 
-    override fun fetchCountriesForQuery(name: String): Flow<List<Country>> =
+    override fun fetchCountriesForQuery(
+        name: String,
+        onStart: (() -> Unit)?,
+        onComplete: (() -> Unit)?,
+        onError: ((String?) -> Unit)?
+    ): Flow<List<Country>> =
         flow {
             countriesService.fetchCountriesForQuery(name)
                 .suspendOnSuccess { emit(this.data.asDomain()) }
                 .onFailure {
                     Log.e(TAG, "fetchCountriesForQuery: $name Error!\n ${this.message()}")
+                    onError?.invoke(this.message())
                 }
+                .onException { Log.d(TAG, "fetchCountriesForQuery: ") }
         }
+            .onStart { onStart?.invoke() }
+            .onCompletion { onComplete?.invoke() }
             .flowOn(Dispatchers.IO)
 
-    override fun fetchCountryByCode(code: String): Flow<Country> =
+    override fun fetchCountryByCode(code: String, onError: (Throwable?) -> Unit): Flow<Country> =
         flow {
             countriesService.fetchCountryByCode(code)
                 .suspendOnSuccess { emit(data.asDomain().first()) }
                 .onFailure { Log.e(TAG, "fetchCountryByCode: $code Error! \n ${message()}") }
+                .onException {
+                    Log.d(TAG, "fetchCountryByCode: Exception ${this.exception}")
+                    onError.invoke(exception)
+                }
         }.flowOn(Dispatchers.IO)
 
 }

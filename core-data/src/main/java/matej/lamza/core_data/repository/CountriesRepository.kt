@@ -13,8 +13,13 @@ interface CountriesRepository {
     ): Flow<List<Country>>
 
     @WorkerThread
-    fun fetchCountriesForQuery(name: String): Flow<List<Country>>
+    fun fetchCountriesForQuery(
+        name: String,
+        onStart: (() -> Unit)? = null,
+        onComplete: (() -> Unit)? = null,
+        onError: ((String?) -> Unit)? = null,
+    ): Flow<List<Country>>
 
     @WorkerThread
-    fun fetchCountryByCode(code: String): Flow<Country>
+    fun fetchCountryByCode(code: String, onError: (Throwable?) -> Unit): Flow<Country>
 }

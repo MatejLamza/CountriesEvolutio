@@ -7,7 +7,7 @@ import matej.lamza.countries.databinding.ActivitySearchBinding
 import matej.lamza.countries.utils.extensions.handleUIState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_search) {
+class SearchActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_search) {
 
     private val countryVM by viewModel<CountryViewModel>()
     private val sortDialog by lazy { SortBottomDialog(this) }
