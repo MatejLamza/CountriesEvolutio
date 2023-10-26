@@ -56,5 +56,6 @@ dependencies {
     implementation(libs.whatIf)
     implementation(libs.bundler)
     implementation(libs.glide)
+    implementation(libs.shimmer)
 
 }

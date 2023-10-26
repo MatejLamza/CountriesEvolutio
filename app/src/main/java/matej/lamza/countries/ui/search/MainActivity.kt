@@ -4,19 +4,23 @@ import android.os.Bundle
 import com.skydoves.bindables.BindingActivity
 import matej.lamza.countries.R
 import matej.lamza.countries.databinding.ActivitySearchBinding
+import matej.lamza.countries.utils.extensions.handleUIState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_search) {
 
     private val countryVM by viewModel<CountryViewModel>()
+    private val sortDialog by lazy { SortBottomDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding {
             vm = countryVM
-            adapter = CountryAdapter()
+            queryResultAdapter = CountryAdapter()
+            allCountriesAdapter = CountryAdapter()
         }
         setupUI()
+        setupObservers()
     }
 
     private fun setupUI() {
@@ -25,14 +29,16 @@ class MainActivity : BindingActivity<ActivitySearchBinding>(R.layout.activity_se
                 countryVM.submitSearchQuery(textView.text.toString())
                 return@setOnEditorActionListener false
             }
-
-            sort.setOnClickListener {
-                val bottomSheetDialog = SortBottomDialog(this@MainActivity)
-                bottomSheetDialog.show()
-                bottomSheetDialog.onSortClicked = { sortOptions ->
-                    binding.adapter?.sortCountries(sortOptions)
-                }
+            sort.setOnClickListener { sortDialog.show() }
+            sortDialog.onSortClicked = { criteria ->
+                binding.queryResultAdapter?.sortCountries(criteria)
             }
+        }
+    }
+
+    private fun setupObservers() {
+        countryVM.uiState.observe(this) { uiState ->
+            uiState.handleUIState(binding.root, binding.shimmerContainer)
         }
     }
 }

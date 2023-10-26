@@ -23,7 +23,9 @@ class CountriesRepoImpl(private val countriesService: CountriesService) : Countr
     ): Flow<List<Country>> = flow {
         countriesService.fetchCountriesList()
             .suspendOnSuccess { emit(this.data.asDomain()) }
-            .onFailure { onError(this.message()) }
+            .onFailure {
+                onError(this.message())
+            }
     }
         .onStart { onStart() }
         .onCompletion { onComplete() }
