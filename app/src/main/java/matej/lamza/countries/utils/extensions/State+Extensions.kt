@@ -4,14 +4,13 @@ import android.view.View
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.snackbar.Snackbar
 import matej.lamza.countries.common.state.State
-import matej.lamza.countries.utils.ErrorMapper
 
 fun State.handleUIState(
     parent: View,
     shimmerContainer: ShimmerFrameLayout? = null,
     onLoading: (() -> Unit)? = null,
     onDone: (() -> Unit)? = null,
-    onError: ((throwable: Throwable?) -> Unit)? = null
+    onError: ((message: String?) -> Unit)? = null
 ) {
     when (this) {
         is State.Loading -> {
@@ -25,9 +24,8 @@ fun State.handleUIState(
         }
 
         is State.Error -> {
-            val errorMessage = throwable.let { ErrorMapper.getMessage(it, parent.context) }
-            Snackbar.make(parent, "Error occurred: $errorMessage", Snackbar.LENGTH_LONG).show()
-            onError?.invoke(this.throwable)
+            Snackbar.make(parent, "Error occurred: $message", Snackbar.LENGTH_LONG).show()
+            onError?.invoke(this.message)
         }
     }
 }

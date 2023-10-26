@@ -1,4 +1,4 @@
-package matej.lamza.countries.utils.extensions
+package matej.lamza.core_model.utils.extensions
 
 import java.util.Locale
 
@@ -12,7 +12,7 @@ fun Long.getFormattedNumber(): String {
     return when {
         number >= BILLION -> String.format(Locale.ENGLISH, "%.2fB", number / BILLION)
         number >= MILLION -> String.format(Locale.ENGLISH, "%.2fM", number / MILLION)
-        number >= HUNDRED_THOUSAND -> String.format(Locale.ENGLISH, "%.2fL", number / HUNDRED_THOUSAND)
+        number >= HUNDRED_THOUSAND -> String.format(Locale.ENGLISH, "%.2fK", number / THOUSAND)
         number >= THOUSAND -> String.format(Locale.ENGLISH, "%.2fK", number / THOUSAND)
         else -> number.toString()
     }

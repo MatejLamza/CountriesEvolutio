@@ -95,7 +95,7 @@
 
                 <Button
                     android:id="@+id/sort"
-                    shouldBeGone="@{vm.countryList == null}"
+                    setVisibilityWithList="@{vm.countryList}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/sort"

@@ -17,9 +17,9 @@ interface CountriesRepository {
         name: String,
         onStart: (() -> Unit)? = null,
         onComplete: (() -> Unit)? = null,
-        onError: ((String?) -> Unit)? = null,
+        onError: ((String?) -> Unit)
     ): Flow<List<Country>>
 
     @WorkerThread
-    fun fetchCountryByCode(code: String, onError: (Throwable?) -> Unit): Flow<Country>
+    fun fetchCountryByCode(code: String, onError: (String?) -> Unit): Flow<Country>
 }

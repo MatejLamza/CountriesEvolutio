@@ -28,7 +28,9 @@ class DetailsViewModel(
 
     init {
         viewModelScope.launch {
-            countryInfoFlow.emit(countriesRepository.fetchCountriesForQuery(country.name).first().first())
+            countryInfoFlow.emit(countriesRepository.fetchCountriesForQuery(country.name, onError = {
+                _uiState.value = State.Error(it)
+            }).first().first())
         }
     }
 

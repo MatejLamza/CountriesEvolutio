@@ -28,7 +28,7 @@ class CountryViewModel(private val countriesRepository: CountriesRepository) : B
                 query,
                 { viewModelScope.launch { _uiState.value = State.Loading } },
                 { viewModelScope.launch { _uiState.value = State.Done } },
-                { viewModelScope.launch { _uiState.value = State.Error() } },
+                { viewModelScope.launch { _uiState.value = State.Error(it) } },
             )
         else flowOf(emptyList())
     }
@@ -39,7 +39,7 @@ class CountryViewModel(private val countriesRepository: CountriesRepository) : B
     private val allCountriesFlow = countriesRepository.fetchCountriesList(
         { viewModelScope.launch { _uiState.value = State.Loading } },
         { viewModelScope.launch { _uiState.value = State.Done } },
-        { viewModelScope.launch { _uiState.value = State.Error() } },
+        { viewModelScope.launch { _uiState.value = State.Error(it) } },
     )
 
     @get:Bindable
