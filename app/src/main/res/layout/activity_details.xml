@@ -42,6 +42,7 @@
                 android:layout_height="match_parent"
                 android:padding="@dimen/margin_medium">
 
+
                 <TextView
                     android:id="@+id/country_name"
                     android:layout_width="0dp"
@@ -52,7 +53,7 @@
                     app:layout_constraintEnd_toStartOf="@id/flag"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Indonesia" />
+                    tools:text="The United Kingdom Of Great Britan and Northern Ireland" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/flag"
@@ -65,97 +66,125 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:src="@drawable/flag" />
 
-                <LinearLayout
-                    android:id="@+id/info_container"
-                    android:layout_width="match_parent"
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/horizontal_constraint_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.33" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/horizontal_constraint_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.66" />
+
+                <TextView
+                    android:id="@+id/label_population"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
+                    android:alpha="0.7"
                     android:gravity="center_horizontal"
-                    android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@id/country_name">
+                    android:text="@string/label_population"
+                    app:layout_constraintEnd_toStartOf="@id/horizontal_constraint_one"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/country_name" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/population"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:gravity="center_horizontal"
+                    android:text="@{vm.countryInfo.pop}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/horizontal_constraint_one"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/label_population"
+                    tools:text="377.00k" />
 
-                        <TextView
-                            android:id="@+id/population"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:alpha="0.7"
-                            android:text="@string/label_population" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/grey"
+                    app:layout_constraintBottom_toBottomOf="@id/population"
+                    app:layout_constraintStart_toEndOf="@id/label_population"
+                    app:layout_constraintTop_toTopOf="@id/label_population" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="@{vm.countryInfo.pop}"
-                            tools:text="897,300" />
+                <TextView
+                    android:id="@+id/label_area"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:alpha="0.7"
+                    android:gravity="center_horizontal"
+                    android:text="@string/label_area"
+                    app:layout_constraintEnd_toStartOf="@id/horizontal_constraint_two"
+                    app:layout_constraintStart_toStartOf="@id/horizontal_constraint_one"
+                    app:layout_constraintTop_toBottomOf="@id/country_name" />
 
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/area"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:gravity="center_horizontal"
+                    android:text="@{vm.countryInfo.areaStr}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/horizontal_constraint_two"
+                    app:layout_constraintStart_toStartOf="@id/horizontal_constraint_one"
+                    app:layout_constraintTop_toBottomOf="@id/label_area"
+                    tools:text="377.00 km2" />
 
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="5dp"
-                        android:background="@color/grey" />
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="40dp"
+                    android:background="@color/grey"
+                    app:layout_constraintBottom_toBottomOf="@id/area"
+                    app:layout_constraintStart_toEndOf="@id/label_area"
+                    app:layout_constraintTop_toTopOf="@id/label_area" />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                <TextView
+                    android:id="@+id/label_capital"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:alpha="0.7"
+                    android:gravity="center_horizontal"
+                    android:text="@string/label_capital"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/horizontal_constraint_two"
+                    app:layout_constraintTop_toBottomOf="@id/country_name" />
 
-                        <TextView
-                            android:id="@+id/Area"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:alpha="0.7"
-                            android:text="@string/label_area" />
+                <TextView
+                    android:id="@+id/capitals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/margin_small"
+                    android:text="@{vm.countryInfo.capital}"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/horizontal_constraint_two"
+                    app:layout_constraintTop_toBottomOf="@id/label_capital"
+                    tools:text="Bloemfontein, Cape Town, Pretoria" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="@{vm.countryInfo.areaStr}"
-                            tools:text="897,300" />
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginVertical="5dp"
-                        android:background="@color/grey" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/capital"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:alpha="0.7"
-                            android:text="@string/label_capital" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:text="@{vm.countryInfo.capital}"
-                            tools:text="Denpasar" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/label_borders"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:gravity="center_horizontal"
+                    android:text="Borders"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/capitals" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/borders"
@@ -163,38 +192,48 @@
                     submitList="@{vm.countryInfo.borders}"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_marginTop="@dimen/margin_small"
                     android:adapter="@{adapter}"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/info_container"
+                    app:layout_constraintTop_toBottomOf="@id/label_borders"
                     tools:listitem="@layout/item_country_border" />
 
-                <matej.lamza.countries.common.views.TextViewWithLabel
-                    android:id="@+id/label_languages"
+                <View
+                    android:id="@+id/divider"
                     android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@color/grey"
+                    app:layout_constraintTop_toBottomOf="@id/borders" />
+
+                <TextView
+                    android:id="@+id/label_timezones"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_default"
-                    app:label="Languages"
+                    android:text="@string/label_timezones"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/borders"
-                    app:value="Croatian" />
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
 
-                <matej.lamza.countries.common.views.TextViewWithLabel
+                <TextView
                     android:id="@+id/timezones"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_default"
-                    app:label="Timezones"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/label_languages"
-                    app:value="@{vm.countryInfo.timezone}" />
-
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:text="@{vm.countryInfo.timezone}"
+                    app:layout_constraintBottom_toBottomOf="@id/label_timezones"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/label_timezones"
+                    app:layout_constraintTop_toTopOf="@id/label_timezones"
+                    tools:text="UTC+01:00 - UTC+06:00" />
 
                 <Button
                     android:id="@+id/btn_navigate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
                     android:text="@string/action_open_in_maps"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
