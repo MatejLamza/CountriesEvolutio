@@ -31,7 +31,7 @@
                 android:layout_marginTop="@dimen/margin_default"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/country_name"
                 tools:src="@drawable/flag" />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -43,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Croatia" />
+                tools:text="French Southern and Antartica Lands" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/label_capital"
@@ -69,7 +69,7 @@
                 android:id="@+id/label_population"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_small"
                 android:text="@string/label_population"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/label_capital"
@@ -90,7 +90,7 @@
                 android:id="@+id/label_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_small"
                 android:text="@string/label_area"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/label_population"
