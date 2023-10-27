@@ -24,7 +24,7 @@ fun State.handleUIState(
         }
 
         is State.Error -> {
-            Snackbar.make(parent, "Error occurred: $message", Snackbar.LENGTH_LONG).show()
+            Snackbar.make(parent, "Error occurred: $message", Snackbar.LENGTH_LONG).error().show()
             onError?.invoke(this.message)
         }
     }
